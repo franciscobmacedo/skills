@@ -30,7 +30,6 @@ Each user reaction becomes a round. Don't just forward their words: add the engi
 
 - Workers verify against a real build, and state *why* a bug happened, not just that it is fixed.
 - Workers isolate or restore any test data they write to live systems, and say so.
-- Workers may not create external accounts, accept paid plans, or send communications. Notifications go through the user's own channels, driven by you.
 - Cap spawn depth so fan-out cannot run away.
 - Sanity-check worker claims cheaply when they matter, especially ones flagged as inferred rather than measured.
 - Secrets a round generates go to the user's secret store and to the user directly — never left only in scrollback, never committed.
