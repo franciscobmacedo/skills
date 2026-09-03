@@ -18,6 +18,8 @@ Small conductor-level acts stay with you: reading a file to understand state, a 
 
 Spawn a sub-agent per unit of work. Independent units go in parallel; units that touch the same files get sequenced or merged into one brief. Workers finish and go — the durable context lives with you, in the briefs you write.
 
+**Pick the model per task.** A worker is not automatically your model. Match it to the difficulty of the work: a cheap fast model for mechanical, well-specified changes; a stronger one than yours for the genuinely hard piece. Judge each unit on its own.
+
 Every worker starts with none of your conversation, so the brief must stand alone: what to build, acceptance criteria, the context it cannot infer (stack, conventions, prior decisions and why), what must NOT regress, how to verify, and what to report back.
 
 ## The round loop
