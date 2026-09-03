@@ -30,6 +30,12 @@ Each user reaction becomes a round. Don't just forward their words: add the engi
 
 Workers validate their own work against a real build before reporting, and say *why* a bug happened, not just that it is fixed. You validate too: don't take a report at face value, check the claims that matter yourself. When the work is hard enough that reviewing it is itself heavy, spawn an agent just to validate, independent of the one that built it.
 
+## Cleanup
+
+Tidy up as you go, not at the end. When a round finishes, close whatever it opened and no longer needs: worktrees and branches once merged, dev servers and background processes, browser tabs, terminal panes, scratch files. Leftovers pile up across rounds and nobody remembers what they belonged to.
+
+Only clean up what the rounds created. Anything that was already there, or belongs to the user, stays.
+
 ## Standing rules
 
 - Workers isolate or restore any test data they write to live systems, and say so.
