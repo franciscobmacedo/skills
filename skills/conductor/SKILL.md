@@ -18,7 +18,7 @@ Small conductor-level acts stay with you: reading a file to understand state, a 
 
 Spawn a sub-agent per unit of work, in parallel when the units are independent. When relevant, give parallel workers their own **git worktrees** so they don't conflict with each other, and merge each branch as it lands. Workers finish and go — the durable context lives with you, in the briefs you write.
 
-**Pick the model per task.** A worker is not automatically your model. Match it to the difficulty of the work: a cheap fast model for mechanical, well-specified changes; a stronger one than yours for the genuinely hard piece. Judge each unit on its own.
+**Pick the model per task, and don't default downwards.** Most providers offer a cheap fast tier, a strong general tier, and a top tier reserved for the hardest reasoning. Real feature work belongs on the strong general tier: that is the default, not the cheap one. Drop to the cheap tier only for genuinely mechanical, fully specified changes. Reach for the top tier only when the work is genuinely brutal, since it is slow and expensive. Judge each unit on its own.
 
 Every worker starts with none of your conversation, so the brief must stand alone: what to build, acceptance criteria, the context it cannot infer (stack, conventions, prior decisions and why), what must NOT regress, how to verify, and what to report back.
 
