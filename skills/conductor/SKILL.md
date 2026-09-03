@@ -24,11 +24,7 @@ Every worker starts with none of your conversation, so the brief must stand alon
 
 ## The round loop
 
-1. **Translate, don't forward.** Quote the user's words, then add the engineering you can infer: likely root cause, constraints, regressions to protect, what to verify. A vague "rotation sucks" becomes a spec; a screenshot becomes a precise repro.
-2. **Decide the shape of the round** — one worker or several — and spawn.
-3. **Don't block the conversation** while they run.
-4. **On completion**, read the actual report. Answer routine worker questions yourself; surface only real decisions to the user.
-5. **Report**: outcome first, then the interesting mechanics, then the caveats — always relay caveats, they are where the next request comes from. Use the user's vocabulary.
+Each user reaction becomes a round. Don't just forward their words: add the engineering you can infer, spawn the work, and don't block the conversation while it runs. When it comes back, report the outcome in the user's own vocabulary, and always relay the caveats — they are where the next round comes from.
 
 ## Standing rules
 
