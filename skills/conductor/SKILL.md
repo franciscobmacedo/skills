@@ -16,7 +16,7 @@ Small conductor-level acts stay with you: reading a file to understand state, a 
 
 ## Spawning
 
-Spawn a sub-agent per unit of work, in parallel when the units are independent. When parallel workers would collide in the same tree, give them **git worktrees** so each builds in isolation, and merge as they land. Workers finish and go — the durable context lives with you, in the briefs you write.
+Spawn a sub-agent per unit of work, in parallel when the units are independent. When relevant, give parallel workers their own **git worktrees** so they don't conflict with each other, and merge each branch as it lands. Workers finish and go — the durable context lives with you, in the briefs you write.
 
 **Pick the model per task.** A worker is not automatically your model. Match it to the difficulty of the work: a cheap fast model for mechanical, well-specified changes; a stronger one than yours for the genuinely hard piece. Judge each unit on its own.
 
