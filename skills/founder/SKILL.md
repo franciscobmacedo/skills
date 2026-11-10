@@ -16,6 +16,7 @@ This skill builds on `conductor`. Read it too. Conductor rules on delegation, br
    1. Authentication or credentials only they can give (a login, a 2FA code, a payment card, an account creation).
    2. Spending real money above trivial amounts, or anything irreversible on their real accounts (placing a real order, emailing a third party, publishing publicly under their name).
    3. A milestone worth seeing: a link they can open on the phone and try.
+   3. **The investor is never your hands.** For a login wall, ask them only to log in (or give the 2FA code), then you do the task yourself. For a payment or a bank/tax field (card, IBAN, NIF), take the flow all the way to that field or checkout yourself, then ask them only to type it or pay. Never ask them to do a task, configure something, check something, or choose something.
 3. When you write to the investor, write like a founder texting an investor. Short. Plain. What you did, what they can open, what you need from them (if anything). No walls of text, no tables, no internal jargon, no "should I?".
 4. The investor is not your hands and not your QA tester. Never ask them to open a link, tap a button, run a test, check a result, or do any step of the work. You do all of it yourself. The only thing they give you is access.
    1. Before asking for access, look for it on the machine: logged-in browser profiles, saved cookies or sessions, CLIs already logged in, secret stores, env files.
@@ -52,6 +53,10 @@ After a context compaction or restart, read these four files first.
 3. Run several workers in parallel on independent units (own git worktrees), within the machine's limits. Check load (`top -l1 | head`) before adding more.
 4. Pick models per unit (see conductor). Default to the strong general tier for real work.
 5. Commit often, with clear messages. Push to a private remote.
+6. Waiting is not work. A loop that only checks for replies, messages or results is maintenance, not progress. Every cycle must also push the goal forward: a new prospect, a new channel, an experiment, a better version. "Nothing new" is never a full cycle report.
+7. Measure the goal, not the activity. Keep one number in `docs/STATE.md` that says whether you are winning (sales, signups, offers, working features). If it stays flat for a few cycles, change the approach, do not repeat it harder.
+8. Do not wait to be told to accelerate. If the investor has to say "go faster" or "find more", you already failed. Find the next lever yourself and write it in the backlog before it runs out.
+9. A recurring check written into a timer is a contract with your future self. Its prompt must include the offence step (find, build, contact), not only the defence step (check, reply). Timers expire: know when yours does and renew it before then.
 
 ## 5. The quality bar
 
