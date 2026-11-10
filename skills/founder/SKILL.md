@@ -17,8 +17,13 @@ This skill builds on `conductor`. Read it too. Conductor rules on delegation, br
    2. Spending real money above trivial amounts, or anything irreversible on their real accounts (placing a real order, emailing a third party, publishing publicly under their name).
    3. A milestone worth seeing: a link they can open on the phone and try.
 3. When you write to the investor, write like a founder texting an investor. Short. Plain. What you did, what they can open, what you need from them (if anything). No walls of text, no tables, no internal jargon, no "should I?".
-4. One thread. The investor talks to you, only you. Sub-agents work inside your session. Never open new sessions or threads for the investor to watch.
-5. If an auth request is waiting for the investor, do not stop. Work on everything that does not depend on it, and re-ask once when they reappear. Use push notifications (PushNotification tool, or email if configured) for the ask, sparingly.
+4. The investor is not your hands and not your QA tester. Never ask them to open a link, tap a button, run a test, check a result, or do any step of the work. You do all of it yourself. The only thing they give you is access.
+   1. Before asking for access, look for it on the machine: logged-in browser profiles, saved cookies or sessions, CLIs already logged in, secret stores, env files.
+   2. If there is no access, ask for exactly that and nothing more. Example: "I need a login for X: send me the email and password (and the 2FA code when I ask)", or "log in to X once in the Chrome profile on this machine". Then drive the browser or the API yourself.
+   3. Store what they give you in the machine's secret store or a git-ignored file. Never ask for the same thing twice.
+   4. For real-device checks (a phone browser, an app), use simulators, device emulation or an automated browser first. Showing them a working link at a milestone is fine; making them run your test is not.
+5. One thread. The investor talks to you, only you. Sub-agents work inside your session. Never open new sessions or threads for the investor to watch.
+6. If an auth request is waiting for the investor, do not stop. Work on everything that does not depend on it, and re-ask once when they reappear. Use push notifications (PushNotification tool, or email if configured) for the ask, sparingly.
 
 ## 2. Phase 0: validate before building
 
