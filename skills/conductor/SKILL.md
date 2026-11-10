@@ -38,6 +38,7 @@ Only clean up what the rounds created. Anything that was already there, or belon
 
 ## Standing rules
 
+- Browsers: workers drive the real Google Chrome app, never Chrome for Testing, bundled Chromium or headless shells. Bot checks such as Cloudflare block those, and they have no logins. Put this rule in every brief that touches a browser.
 - Workers isolate or restore any test data they write to live systems, and say so.
 - Cap spawn depth so fan-out cannot run away.
 - Secrets a round generates go to the user's secret store and to the user directly — never left only in scrollback, never committed.

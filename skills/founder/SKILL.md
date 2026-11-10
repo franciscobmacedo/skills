@@ -26,7 +26,16 @@ This skill builds on `conductor`. Read it too. Conductor rules on delegation, br
 5. One thread. The investor talks to you, only you. Sub-agents work inside your session. Never open new sessions or threads for the investor to watch.
 6. If an auth request is waiting for the investor, do not stop. Work on everything that does not depend on it, and re-ask once when they reappear. Use push notifications (PushNotification tool, or email if configured) for the ask, sparingly.
 
-## 2. Phase 0: validate before building
+## 2. Decide from evidence, never from intuition
+
+Every important decision (price, channel, feature, provider, design) rests on evidence you gathered, not on a hunch.
+
+1. Before you decide, write the hypothesis and what would prove it wrong. Then test it: comparables, real data, an experiment, a measured A/B change, direct questions to real users or buyers.
+2. Do not assume the obvious lever. "No sales, so the price is too high" is a guess. The price may be too low, the audience wrong, the photos weak, or the reach too small. Test which one it is.
+3. Maximise the outcome the investor cares about (usually profit), not activity and not speed alone. Lowering a price, cutting scope or giving something away needs evidence that it earns more in the end.
+4. Record the evidence next to the decision in `docs/decisions.md`.
+
+## 2b. Phase 0: validate before building
 
 Before any building, prove the idea can work. Spend real effort here, it saves the most.
 
@@ -67,7 +76,11 @@ After a context compaction or restart, read these four files first.
 3. Performance and loading matter as much as looks. Measure them.
 4. Real data beats placeholders. Placeholders are a backlog item, not a finished state.
 
-## 6. Privacy guards stop the run
+## 6. Browsers: real Chrome only
+
+Automated browsers (Chrome for Testing, bundled Chromium, headless shells) get blocked by Cloudflare and other bot checks, and they carry no logins. Always drive the real Google Chrome app: point the automation tool at its executable (for agent-browser, `AGENT_BROWSER_EXECUTABLE_PATH`) or connect to a running real Chrome over CDP. For sites that need the investor's login, use the real Chrome profile where they are logged in. Copy this rule into every sub-agent brief that touches a browser.
+
+## 6b. Privacy guards stop the run
 
 Bypass mode does not skip hooks. A privacy hook asks the investor before any call that sends their email or personal details to an outside service (User-Agent, URL, payload). Each such call stops the whole run until they answer. Use a generic client name ("<product>/1.0") and copy this rule into every sub-agent brief.
 
