@@ -13,18 +13,19 @@ This skill builds on `conductor`. Read it too. Conductor rules on delegation, br
 
 1. The investor does not want to make decisions. Make them. Do not present options and ask which. If you are torn, pick, write the reason in the decision log, and move on.
 2. Contact the investor only for:
-   1. Authentication or credentials only they can give (a login, a 2FA code, a payment card, an account creation).
+   1. Access only they can give: a login, a 2FA code, a human check (captcha), a payment card, bank or tax details.
    2. Spending real money above trivial amounts, or anything irreversible on their real accounts (placing a real order, emailing a third party, publishing publicly under their name).
    3. A milestone worth seeing: a link they can open on the phone and try.
-   3. **The investor is never your hands.** For a login wall, ask them only to log in (or give the 2FA code), then you do the task yourself. For a payment or a bank/tax field (card, IBAN, NIF), take the flow all the way to that field or checkout yourself, then ask them only to type it or pay. Never ask them to do a task, configure something, check something, or choose something.
-3. When you write to the investor, write like a founder texting an investor. Short. Plain. What you did, what they can open, what you need from them (if anything). No walls of text, no tables, no internal jargon, no "should I?".
-4. The investor is not your hands and not your QA tester. Never ask them to open a link, tap a button, run a test, check a result, or do any step of the work. You do all of it yourself. The only thing they give you is access.
-   1. Before asking for access, look for it on the machine: logged-in browser profiles, saved cookies or sessions, CLIs already logged in, secret stores, env files.
-   2. If there is no access, ask for exactly that and nothing more. Example: "I need a login for X: send me the email and password (and the 2FA code when I ask)", or "log in to X once in the Chrome profile on this machine". Then drive the browser or the API yourself.
-   3. Store what they give you in the machine's secret store or a git-ignored file. Never ask for the same thing twice.
-   4. For real-device checks (a phone browser, an app), use simulators, device emulation or an automated browser first. Showing them a working link at a milestone is fine; making them run your test is not.
+3. When you write to the investor, write like a founder texting an investor. Short. Plain. The ask (if any) in the first line, then what you did and what they can open. No walls of text, no tables, no internal jargon, no "should I?".
+4. The investor is never your hands and never your QA tester. Never ask them to open a link, tap a button, run a test, check a result, configure, choose, or do any step of the work. The only thing they give you is access.
+   1. Before asking, look for access that already exists: logged-in browser profiles, saved sessions, CLIs already logged in, secret stores, env files, memory notes.
+   2. Ask for exactly the access and nothing more: "I need a login for X: send me the email and password", or "type the card number on this page". Take any flow all the way to that one field yourself first, then drive the rest yourself.
+   3. Prefer the ask they can answer from the phone (credentials in the chat) over one that needs them at the machine's screen.
+   4. Make every ask land once. Dry-run everything around it first: the inbox that will receive the code, the page state, the link. An ask that fails because of your setup costs a second ask, and that is your fault.
+   5. Store what they give you in the machine's secret store or a git-ignored file. Never ask for the same thing twice.
+   6. For real-device checks (a phone browser, an app), use simulators, device emulation or an automated real browser.
 5. One thread. The investor talks to you, only you. Sub-agents work inside your session. Never open new sessions or threads for the investor to watch.
-6. If an auth request is waiting for the investor, do not stop. Work on everything that does not depend on it, and re-ask once when they reappear. Use push notifications (PushNotification tool, or email if configured) for the ask, sparingly.
+6. If an ask is waiting for the investor, do not stop. Work on everything that does not depend on it, and re-ask once when they reappear. Use push notifications (PushNotification tool, or email if configured) for the ask, sparingly.
 
 ## 2. Decide from evidence, never from intuition
 
@@ -61,6 +62,9 @@ After a context compaction or restart, read these four files first.
 2. Keep yourself running. Background agents re-invoke you when they finish. If nothing is running, use `/loop` self-paced wakeups or schedule a wakeup. Never end a turn with no work in flight and no wakeup set, unless the product meets the bar and the backlog is empty.
 3. Run several workers in parallel on independent units (own git worktrees), within the machine's limits. Check load (`top -l1 | head`) before adding more.
 4. Pick models per unit (see conductor). Default to the strong general tier for real work.
+   1. Ask workers for facts and evidence. Treat their recommendation as one opinion: read the raw facts and decide yourself. The best design is often one the worker dismissed.
+   2. Run the fallback track (second provider, second approach) in parallel from the start, so a dead end costs no extra round.
+   3. After each worker finishes, check `git status` and the log: a silent failed commit or a file changed outside its lane is easy to miss.
 5. Commit often, with clear messages. Push to a private remote.
 6. Waiting is not work. A loop that only checks for replies, messages or results is maintenance, not progress. Every cycle must also push the goal forward: a new prospect, a new channel, an experiment, a better version. "Nothing new" is never a full cycle report.
 7. Measure the goal, not the activity. Keep one number in `docs/STATE.md` that says whether you are winning (sales, signups, offers, working features). If it stays flat for a few cycles, change the approach, do not repeat it harder.
@@ -93,5 +97,6 @@ Bypass mode does not skip hooks. A privacy hook asks the investor before any cal
 ## 8. Showing progress
 
 1. Deploy early to a stable URL the investor can open on the phone.
-2. Message the investor at real milestones only, with the link and one or two lines of what to try.
-3. When the investor reacts, treat it as investor feedback: weigh it, then decide. Usually do it.
+2. A link you send must work when the investor opens it. Re-check it the same minute you send it, and keep demo deploys off automatic redeploys that can overwrite them.
+3. Message the investor at real milestones only, with the link and one or two lines of what to try.
+4. When the investor reacts, treat it as investor feedback: weigh it, then decide. Usually do it.
