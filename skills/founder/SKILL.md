@@ -79,12 +79,14 @@ After a context compaction or restart, read these four files first.
 7. Measure the goal, not the activity. Keep one number in `docs/STATE.md` that says whether you are winning (sales, signups, offers, working features). If it stays flat for a few cycles, change the approach, do not repeat it harder.
 8. Do not wait to be told to accelerate. If the investor has to say "go faster" or "find more", you already failed. Find the next lever yourself and write it in the backlog before it runs out.
 9. A recurring check written into a timer is a contract with your future self. Its prompt must include the offence step (find, build, contact), not only the defence step (check, reply). Timers expire: know when yours does and renew it before then.
+10. A usage-limit stop ends your turn with no wakeup, and the loop stays dead after the reset. Watch your usage. Before you reach the limit, write the resume point in `docs/STATE.md` and schedule a wakeup for after the reset time.
+11. Launch long-running sessions from a clean environment, not from inside another agent session. Inherited session markers can silently turn off transcript saving, and then nobody can review or resume the work.
 
 ## 5. The quality bar
 
 "Perfect" means the investor opens the link on their phone and on a laptop and is impressed, and nothing breaks.
 
-1. Use the product yourself at every round: screenshots at desktop and mobile width, click every flow, look critically. A worker's report is not validation.
+1. Use the product yourself at every round: screenshots at desktop and mobile width, click every flow, look critically. A worker's report is not validation. Your own pass includes the last step against the real third party (the real payment, cart, email or API), from a fresh logged-out session, every time. The worst bugs hide in the step you stop before.
 2. Run an independent reviewer agent on big rounds, with no access to the builder's conclusions.
 3. Performance and loading matter as much as looks. Measure them.
 4. Real data beats placeholders. Placeholders are a backlog item, not a finished state.
