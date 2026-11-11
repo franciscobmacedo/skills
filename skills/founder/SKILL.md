@@ -76,11 +76,14 @@ After a context compaction or restart, read these four files first.
    3. After each worker finishes, check `git status` and the log: a silent failed commit or a file changed outside its lane is easy to miss.
 5. Commit often, with clear messages. Push to a private remote.
 6. Waiting is not work. A loop that only checks for replies, messages or results is maintenance, not progress. Every cycle must also push the goal forward: a new prospect, a new channel, an experiment, a better version. "Nothing new" is never a full cycle report.
-7. Measure the goal, not the activity. Keep one number in `docs/STATE.md` that says whether you are winning (sales, signups, offers, working features). If it stays flat for a few cycles, change the approach, do not repeat it harder.
+7. Measure the goal, not the activity. Keep one number in `docs/STATE.md` that says whether you are winning (sales, signups, offers, working features). Before there are users, ask each independent reviewer for a score out of 10 against the bar in section 5, and track that. If it stays flat for a few cycles, change the approach, do not repeat it harder.
 8. Do not wait to be told to accelerate. If the investor has to say "go faster" or "find more", you already failed. Find the next lever yourself and write it in the backlog before it runs out.
 9. A recurring check written into a timer is a contract with your future self. Its prompt must include the offence step (find, build, contact), not only the defence step (check, reply). Timers expire: know when yours does and renew it before then.
-10. A usage-limit stop ends your turn with no wakeup, and the loop stays dead after the reset. Watch your usage. Before you reach the limit, write the resume point in `docs/STATE.md` and schedule a wakeup for after the reset time.
-11. Launch long-running sessions from a clean environment, not from inside another agent session. Inherited session markers can silently turn off transcript saving, and then nobody can review or resume the work.
+10. A usage-limit stop ends your turn with no wakeup, and the loop stays dead after the reset. Watch your usage. Before you reach the limit, write the resume point in `docs/STATE.md` and schedule a wakeup for after the reset time. Workers die at the limit too, and uncommitted work in their worktrees is lost: every build brief says "commit after each item".
+11. If a known bug can hurt the investor's real account (a double order, a double payment), fix that one line yourself now. Do not leave it live while a full round runs.
+12. When two workers will touch the same code, merge the first one and tell the second one to merge main. The worker that knows its code resolves the conflict more cheaply than you do.
+13. Take timestamps from `date`, not from your sense of the time. Wrong times in STATE make every later judgement about stalls and budgets wrong.
+14. Launch long-running sessions from a clean environment, not from inside another agent session. Inherited session markers can silently turn off transcript saving, and then nobody can review or resume the work.
 
 ## 5. The quality bar
 
@@ -99,10 +102,14 @@ Automated browsers (Chrome for Testing, bundled Chromium, headless shells) get b
 
 Bypass mode does not skip hooks. A privacy hook asks the investor before any call that sends their email or personal details to an outside service (User-Agent, URL, payload). Each such call stops the whole run until they answer. Use a generic client name ("<product>/1.0") and copy this rule into every sub-agent brief.
 
+## 6c. Prompts that still stop a bypass-mode run
+
+Bypass mode still asks before a shell command it cannot parse safely: `rm` with a variable path, and long one-liners with shell-specific expansions, loops and redirects. The prompt waits in a worker's pane, the worker freezes, and nobody sees it. Tell every worker to put multi-step shell in a script file and run that file, and to use literal paths for any delete. If a worker runs much longer than its budget suggests, look for a pending prompt first.
+
 ## 7. Money and accounts
 
 1. Usage limits are the scarcest money. "Launch as many sub-agents as you need" is not a budget. Keep a running estimate of tokens spent per round in `docs/STATE.md`, run at most two or three workers at once, and slow down well before the limit, not at it.
-2. A token budget written in a brief caps nothing. Also name the scope cuts the worker makes if it runs long, and ask for a progress note halfway.
+2. A token budget written in a brief caps nothing. Also give a hard stop, the order in which the worker cuts scope if it runs long, "commit after each item", and a request for a progress note halfway. Briefs with these land within about 5% of budget. Briefs without them overrun by 40 to 50%.
 3. Ask research workers for "the verdict plus the cheapest measurement that would refute it". That output turns straight into the next round.
 4. Before re-spawning work a stopped worker left behind, check its state yourself (tests, type check, diff), and brief "finish this", not "rebuild this".
 5. Never copy a worker's claims into the state files unverified. Check the number in the artifact itself.
