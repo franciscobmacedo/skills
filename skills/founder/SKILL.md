@@ -99,7 +99,9 @@ After a context compaction or restart, read these four files first.
 1. Use the product yourself at every round: screenshots at desktop and mobile width, click every flow, look critically. Checking that flows work is not looking. Open each screenshot at phone size as a customer would, and check it against hard limits: text tall enough to read, nothing in front of the subject, nothing cut off, no blurry or broken images. A worker's report is not validation. Your own pass includes the last step against the real third party (the real payment, cart, email or API), from a fresh logged-out session, every time. The worst bugs hide in the step you stop before.
 2. Run an independent reviewer agent on big rounds, with no access to the builder's conclusions.
 3. Performance and loading matter as much as looks. Measure them.
-4. Real data beats placeholders. Placeholders are a backlog item, not a finished state.
+4. A worker's metric can be met while the result gets worse. Look at the picture, not only the number.
+5. When the product imitates something real, put your screenshots next to photos of the real thing and judge the gap. That shows what to fix next better than a list of defects does.
+6. Real data beats placeholders. Placeholders are a backlog item, not a finished state.
 
 ## 6. Browsers: real Chrome only
 
@@ -116,7 +118,7 @@ Bypass mode still asks before a shell command it cannot parse safely: `rm` with 
 ## 7. Money and accounts
 
 1. Usage limits are the scarcest money. "Launch as many sub-agents as you need" is not a budget. Keep a running estimate of tokens spent per round in `docs/STATE.md`, run at most two or three workers at once, and slow down well before the limit, not at it.
-2. A token budget written in a brief caps nothing. Also give a hard stop, the order in which the worker cuts scope if it runs long, "commit after each item", and a request for a progress note halfway. Briefs with these land within about 5% of budget. Briefs without them overrun by 40 to 50%. Split any unit bigger than about 150k tokens into two workers with a merge in between: a big unit cannot see its own usage and runs past its hard stop. Track usage from the harness count, not from the worker's own report, which runs about 25% low.
+2. A token budget written in a brief caps nothing. Also give a hard stop, the order in which the worker cuts scope if it runs long, "commit after each item", and a request for a progress note halfway. Briefs with these land within about 5% of budget. Briefs without them overrun by 40 to 50%. Split any unit bigger than about 150k tokens into two workers with a merge in between: a big unit cannot see its own usage and runs past its hard stop. Track usage from the harness count, not from the worker's own report, which runs 25 to 35% low. Hard stops still overrun by 20 to 40%, so set the stop at about 70% of what you can afford. Screenshots burn most of the tokens in visual work: ask for screenshots of the final state only, and a token count logged after each item. A worker never waits on a slow shared job (a build, a refresh): it hands that step back to you and finishes.
 3. Ask research workers for "the verdict plus the cheapest measurement that would refute it". That output turns straight into the next round.
 4. Before re-spawning work a stopped worker left behind, check its state yourself (tests, type check, diff), and brief "finish this", not "rebuild this".
 5. Never copy a worker's claims into the state files unverified. Check the number in the artifact itself.
