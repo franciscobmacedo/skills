@@ -43,7 +43,10 @@ Every important decision (price, channel, feature, provider, design) rests on ev
 1. Before you decide, write the hypothesis and what would prove it wrong. Then test it: comparables, real data, an experiment, a measured A/B change, direct questions to real users or buyers.
 2. Do not assume the obvious lever. "No sales, so the price is too high" is a guess. The price may be too low, the audience wrong, the photos weak, or the reach too small. Test which one it is.
 3. Maximise the outcome the investor cares about (usually profit), not activity and not speed alone. Lowering a price, cutting scope or giving something away needs evidence that it earns more in the end.
-4. Record the evidence next to the decision in `docs/decisions.md`.
+4. Before you spend on research or testing, name the business decision it informs. Evidence that informs no decision is activity.
+5. Keep a measurement's conditions fixed between runs (same personas, same tasks, same build target), or the before and after cannot be compared. Repeat noisy measurements (load times, scores) three times.
+6. Test the paths a stranger takes, not the path you know. A tester who never used your shortcut finds the gap you cannot see.
+7. Record the evidence next to the decision in `docs/decisions.md`.
 
 ## 2b. Phase 0: validate before building
 
@@ -73,7 +76,8 @@ After a context compaction or restart, read these four files first.
 4. Models: the strong general tier (Opus-class) is as capable as the top tier for almost everything: building features, research, reviews, browser work. Use it by default and name it explicitly on every sub-agent, because a sub-agent with no model named inherits yours. Use the cheap tier for mechanical, fully specified work. The top tier is a rare exception for a unit that is truly brutal, with the reason written in the brief. Usage limits are the investor's money: burning them on the top tier stops the whole company.
    1. Ask workers for facts and evidence. Treat their recommendation as one opinion: read the raw facts and decide yourself. The best design is often one the worker dismissed.
    2. Run the fallback track (second provider, second approach) in parallel from the start, so a dead end costs no extra round.
-   3. After each worker finishes, check `git status` and the log: a silent failed commit or a file changed outside its lane is easy to miss.
+   3. To wait for a background job, watch for its output file, not for a process name: a `pgrep` pattern matches its own command line and never ends.
+   4. After each worker finishes, check `git status` and the log: a silent failed commit or a file changed outside its lane is easy to miss.
 5. Commit often, with clear messages. Push to a private remote.
 6. Waiting is not work. A loop that only checks for replies, messages or results is maintenance, not progress. Every cycle must also push the goal forward: a new prospect, a new channel, an experiment, a better version. "Nothing new" is never a full cycle report.
 7. Measure the goal, not the activity. Keep one number in `docs/STATE.md` that says whether you are winning (sales, signups, offers, working features). Before there are users, score with AI personas (different kinds of real users) who each do a real task at phone size, screenshot every step, and list each concrete defect. Impression scores from general reviewers are inflated and noisy: reviewers gave 7/10 to a build the investor called 30% of the bar. When the investor's verdict and your score disagree, the investor is right and your scoring is broken. Fix the scoring first. If the number stays flat for a few cycles, change the approach, do not repeat it harder.
@@ -111,7 +115,7 @@ Bypass mode still asks before a shell command it cannot parse safely: `rm` with 
 ## 7. Money and accounts
 
 1. Usage limits are the scarcest money. "Launch as many sub-agents as you need" is not a budget. Keep a running estimate of tokens spent per round in `docs/STATE.md`, run at most two or three workers at once, and slow down well before the limit, not at it.
-2. A token budget written in a brief caps nothing. Also give a hard stop, the order in which the worker cuts scope if it runs long, "commit after each item", and a request for a progress note halfway. Briefs with these land within about 5% of budget. Briefs without them overrun by 40 to 50%.
+2. A token budget written in a brief caps nothing. Also give a hard stop, the order in which the worker cuts scope if it runs long, "commit after each item", and a request for a progress note halfway. Briefs with these land within about 5% of budget. Briefs without them overrun by 40 to 50%. Split any unit bigger than about 150k tokens into two workers with a merge in between: a big unit cannot see its own usage and runs past its hard stop. Track usage from the harness count, not from the worker's own report, which runs about 25% low.
 3. Ask research workers for "the verdict plus the cheapest measurement that would refute it". That output turns straight into the next round.
 4. Before re-spawning work a stopped worker left behind, check its state yourself (tests, type check, diff), and brief "finish this", not "rebuild this".
 5. Never copy a worker's claims into the state files unverified. Check the number in the artifact itself.
